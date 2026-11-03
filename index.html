@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>校门奶龙大学 · 3 秒前往厦门理工学院</title>
+<meta name="description" content="校门奶龙大学 X.N.U —— 奶气浓度 100% 的学术殿堂。3 秒后前往厦门理工学院官网。">
+<meta property="og:title" content="校门奶龙大学 · 3 秒前往官网">
+<meta property="og:description" content="奶气浓度 100% 的学术殿堂">
+<meta property="og:image" content="./cover.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐲</text></svg>">
+<style>
+  :root{
+    --cream:#FFF7E3; --cream-2:#FFEFC6;
+    --yellow:#FFC93C; --yellow-deep:#F5A623;
+    --ink:#2B2118; --green:#7BC043; --muted:#9A8A72;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;min-height:100%}
+  body{
+    font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",system-ui,-apple-system,sans-serif;
+    background:
+      radial-gradient(1200px 600px at 50% -10%, #FFFDF5 0%, rgba(255,253,245,0) 60%),
+      radial-gradient(900px 500px at 90% 110%, #FFE9A8 0%, rgba(255,233,168,0) 55%),
+      linear-gradient(180deg,var(--cream) 0%, var(--cream-2) 100%);
+    background-attachment:fixed;
+    color:var(--ink); overflow-x:hidden;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:26px 18px calc(24px + env(safe-area-inset-bottom));
+    min-height:100dvh; position:relative;
+  }
+
+  .bubbles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+  .bubbles i{position:absolute;border-radius:50%;
+    background:radial-gradient(circle at 30% 30%,#FFE38A,#FFC93C);
+    opacity:.3;animation:float linear infinite}
+  @keyframes float{
+    0%{transform:translateY(20px) scale(.9);opacity:0}
+    15%{opacity:.42}
+    85%{opacity:.3}
+    100%{transform:translateY(-140px) scale(1.15);opacity:0}
+  }
+
+  .stage{position:relative;z-index:2;width:min(520px,100%);text-align:center}
+
+  .badge{display:inline-flex;align-items:center;gap:8px;
+    background:rgba(255,255,255,.78);border:1.5px solid rgba(245,166,35,.35);
+    color:#B77A12;font-size:11.5px;font-weight:800;letter-spacing:.16em;
+    padding:6px 13px;border-radius:999px;box-shadow:0 6px 18px rgba(245,166,35,.14);
+    animation:pop .7s cubic-bezier(.2,1.4,.4,1) both}
+  .badge .dot{width:7px;height:7px;border-radius:50%;background:var(--green);
+    animation:pulse 1.6s infinite}
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(123,192,67,.55)}
+    70%{box-shadow:0 0 0 9px rgba(123,192,67,0)}
+    100%{box-shadow:0 0 0 0 rgba(123,192,67,0)}
+  }
+
+  h1{margin:14px 0 4px;font-size:clamp(26px,7.6vw,40px);line-height:1.16;
+    font-weight:900;letter-spacing:.02em;color:#3A2A12;
+    text-shadow:0 2px 0 #fff,0 6px 16px rgba(245,166,35,.22);
+    animation:rise .75s .08s cubic-bezier(.2,1,.3,1) both}
+  h1 em{font-style:normal;color:var(--yellow-deep)}
+  .en{font-size:10.5px;letter-spacing:.3em;color:var(--muted);font-weight:800;
+    animation:rise .75s .16s cubic-bezier(.2,1,.3,1) both}
+  .slogan{margin:10px auto 0;font-size:14px;color:#8B7451;font-weight:700;
+    animation:rise .75s .24s cubic-bezier(.2,1,.3,1) both}
+
+  /* ---------- 三只奶龙 ---------- */
+  .mascots{margin:6px auto 0;width:100%;height:clamp(178px,52vw,268px);
+    display:flex;align-items:flex-end;justify-content:center;gap:clamp(2px,1.6vw,12px);
+    animation:rise .8s .3s cubic-bezier(.2,1,.3,1) both;position:relative}
+  .mascots img{
+    height:100%;width:auto;display:block;
+    filter:drop-shadow(0 14px 18px rgba(200,140,20,.28));
+    transform-origin:50% 100%;
+    animation:bob 2.6s ease-in-out infinite;
+  }
+  .mascots img:nth-child(1){height:86%;animation-delay:-.2s;--rot:-3deg}
+  .mascots img:nth-child(2){height:100%;animation-delay:-.9s;--rot:0deg;z-index:2}
+  .mascots img:nth-child(3){height:80%;animation-delay:-1.5s;--rot:3deg}
+  @keyframes bob{
+    0%,100%{transform:translateY(0) rotate(var(--rot,0deg)) scale(1)}
+    50%{transform:translateY(-11px) rotate(calc(var(--rot,0deg) * -1)) scale(1.015)}
+  }
+  /* 倒计时每跳一秒，全体蹲一下 */
+  .mascots.tick img{animation:bob 2.6s ease-in-out infinite, squash .32s ease-out}
+  @keyframes squash{
+    0%{transform:translateY(0) scaleY(1)}
+    35%{transform:translateY(3px) scaleY(.94) scaleX(1.04)}
+    100%{transform:translateY(0) scaleY(1)}
+  }
+
+  /* ---------- 倒计时 ---------- */
+  .go{margin-top:8px;animation:rise .8s .4s cubic-bezier(.2,1,.3,1) both}
+  .go-line{display:flex;align-items:baseline;justify-content:center;gap:6px;
+    font-size:14.5px;font-weight:800;color:#6B5636}
+  .go-line b{font-size:24px;color:var(--yellow-deep);font-variant-numeric:tabular-nums;
+    min-width:1.15em;display:inline-block;line-height:1}
+  .go-line b.hit{animation:hit .3s ease-out}
+  @keyframes hit{0%{transform:scale(1.35);color:#E8890B}100%{transform:scale(1)}}
+
+  .bar{margin:11px auto 0;width:min(300px,84%);height:9px;border-radius:999px;
+    background:rgba(255,201,60,.26);overflow:hidden;
+    box-shadow:inset 0 1px 3px rgba(160,110,20,.18)}
+  .bar span{display:block;height:100%;width:0;border-radius:999px;
+    background:linear-gradient(90deg,#FFD766,#FFC93C,#F5A623);
+    box-shadow:0 0 12px rgba(245,166,35,.55);animation:fill 3s linear forwards}
+  @keyframes fill{from{width:0}to{width:100%}}
+
+  .target{margin-top:12px;font-size:12.5px;color:var(--muted)}
+  .target strong{color:#3A2A12;font-weight:900}
+
+  .skip{margin-top:16px;display:inline-block;text-decoration:none;
+    padding:11px 26px;border-radius:999px;font-size:14px;font-weight:900;color:#5A3E0B;
+    background:linear-gradient(180deg,#FFE27A,#FFC93C);
+    box-shadow:0 10px 22px rgba(245,166,35,.32),inset 0 1px 0 rgba(255,255,255,.7);
+    transition:transform .18s ease,box-shadow .18s ease}
+  .skip:active{transform:translateY(2px) scale(.985);box-shadow:0 4px 12px rgba(245,166,35,.3)}
+
+  .foot{margin-top:18px;font-size:11px;color:#B9A98E;letter-spacing:.04em;line-height:1.7}
+  .foot span{color:#C9A24B;font-weight:800}
+
+  @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes pop{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
+
+  .wipe{position:fixed;inset:0;z-index:99;pointer-events:none;
+    background:linear-gradient(90deg,transparent,rgba(255,201,60,.95),transparent);
+    transform:translateX(-100%);opacity:0}
+  .wipe.on{animation:sweep .62s cubic-bezier(.5,0,.9,.4) forwards}
+  @keyframes sweep{
+    0%{transform:translateX(-100%);opacity:.9}
+    100%{transform:translateX(100%);opacity:0}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+
+<div class="bubbles" id="bubbles"></div>
+
+<main class="stage">
+  <div class="badge"><i class="dot"></i>XIAOMEN NAILONG UNIVERSITY</div>
+
+  <h1>欢迎来到<em>校门奶龙大学</em></h1>
+  <div class="en">X &nbsp;·&nbsp; N &nbsp;·&nbsp; U</div>
+  <p class="slogan">奶气浓度 100% 的学术殿堂</p>
+
+  <div class="mascots" id="mascots">
+    <img src="./smile.png" alt="奶龙" width="209" height="411">
+    <img src="./laugh.png" alt="奶龙" width="209" height="410">
+    <img src="./idle.png"  alt="奶龙" width="208" height="409">
+  </div>
+
+  <div class="go">
+    <div class="go-line">还有 <b id="num">3</b> 秒前往 <span>厦门理工学院官网</span></div>
+    <div class="bar"><span></span></div>
+    <div class="target">即将跳转 <strong>www.xmut.edu.cn</strong></div>
+    <a class="skip" id="skip" href="https://www.xmut.edu.cn/" rel="noopener">立即前往 →</a>
+  </div>
+
+  <div class="foot">X.N.U &nbsp;·&nbsp; 本页为趣味跳转站，与<span>厦门理工学院</span>官方无关</div>
+</main>
+
+<div class="wipe" id="wipe"></div>
+
+<script>
+(function(){
+  var DEST="https://www.xmut.edu.cn/", TOTAL=3000;
+  var numEl=document.getElementById("num"),
+      wipe=document.getElementById("wipe"),
+      mascots=document.getElementById("mascots"),
+      jumped=false;
+
+  var box=document.getElementById("bubbles");
+  for(var i=0;i<16;i++){
+    var b=document.createElement("i"), s=6+Math.random()*16;
+    b.style.width=b.style.height=s+"px";
+    b.style.left=(Math.random()*100)+"%";
+    b.style.bottom=(-10-Math.random()*30)+"px";
+    b.style.animationDuration=(7+Math.random()*9)+"s";
+    b.style.animationDelay=(-Math.random()*12)+"s";
+    box.appendChild(b);
+  }
+
+  function go(){
+    if(jumped) return;
+    jumped=true;
+    wipe.classList.add("on");
+    setTimeout(function(){ location.replace(DEST); }, 520);
+  }
+
+  var start=Date.now(), last=4;
+  var iv=setInterval(function(){
+    var left=TOTAL-(Date.now()-start);
+    var n=Math.max(0,Math.ceil(left/1000));
+    if(n!==last){
+      last=n; numEl.textContent=n;
+      numEl.classList.remove("hit"); void numEl.offsetWidth; numEl.classList.add("hit");
+      mascots.classList.remove("tick"); void mascots.offsetWidth; mascots.classList.add("tick");
+      setTimeout(function(){ mascots.classList.remove("tick"); },340);
+    }
+    if(left<=0){ clearInterval(iv); go(); }
+  },100);
+
+  document.getElementById("skip").addEventListener("click",function(e){e.preventDefault();go();});
+  setTimeout(go,TOTAL);
+})();
+</script>
+</body>
+</html>
